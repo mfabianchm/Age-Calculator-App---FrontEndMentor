@@ -1,0 +1,79 @@
+<main class="main">
+  <form #yearForm="ngForm" (ngSubmit)="save()" novalidate>
+    <div class="control-container">
+      <label for="day" [ngClass]="{ 'label-error': this.dayHasErrors }"
+        >DAY</label
+      >
+      <input
+        type="number"
+        [(ngModel)]="birth_day"
+        placeholder="DD"
+        [ngClass]="{ 'input-error': this.dayHasErrors }"
+        id="day"
+        #dayInput
+        name="formDay"
+        required
+      />
+      <div *ngIf="dayHasErrors" class="error-text">{{ error_msg_day }}</div>
+    </div>
+    <div class="control-container">
+      <label for="month" [ngClass]="{ 'label-error': this.monthHasErrors }"
+        >MONTH</label
+      >
+      <input
+        type="number"
+        [(ngModel)]="birth_month"
+        id="month"
+        [ngClass]="{ 'input-error': this.monthHasErrors }"
+        name="formMonth"
+        #monthInput
+        placeholder="MM"
+        required
+      />
+      <div *ngIf="monthHasErrors" class="error-text">
+        {{ error_msg_month }}
+      </div>
+    </div>
+    <div class="control-container">
+      <label for="year" [ngClass]="{ 'label-error': this.yearHasErrors }"
+        >YEAR</label
+      >
+      <input
+        type="number"
+        [(ngModel)]="birth_year"
+        [ngClass]="{ 'input-error': this.yearHasErrors }"
+        id="year"
+        #yearInput
+        name="formYear"
+        placeholder="YYYY"
+        required
+      />
+      <div *ngIf="yearHasErrors" class="error-text">{{ error_msg_year }}</div>
+    </div>
+
+    <button type="submit"><img src="../assets/icon-arrow.svg" /></button>
+  </form>
+  <div class="years-div">
+    <h1 *ngIf="years == 0; else yearsText">--</h1>
+    <ng-template #yearsText
+      ><h1>{{ this.years }}</h1></ng-template
+    >
+    <h2>years</h2>
+  </div>
+  <div class="months-div">
+    <h1 *ngIf="months == 0; else monthsText">--</h1>
+    <ng-template #monthsText
+      ><h1>{{ this.months }}</h1></ng-template
+    >
+    <h2>months</h2>
+  </div>
+
+  <div class="days-div">
+    <h1 *ngIf="days == 0; else daysText">--</h1>
+    <ng-template #daysText
+      ><h1>{{ this.days }}</h1></ng-template
+    >
+    <h2>days</h2>
+  </div>
+</main>
+<router-outlet></router-outlet>
